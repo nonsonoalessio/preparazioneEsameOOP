@@ -38,6 +38,11 @@ public class Comande {
 
     public synchronized void aggiungiOrdinazione(Ordinazione ordinazione){
         this.coda.addLast(ordinazione);
+        notifyAll();
+    }
+
+    public synchronized boolean isEmpty(){
+        return coda.isEmpty();
     }
 
     /**
@@ -45,27 +50,25 @@ public class Comande {
      * @return La successiva ordinazione da servire, se ve n'è almeno una.
      */
     public synchronized Ordinazione consegnaOrdinazione(){
-        Ordinazione o;
-        while (this.coda.isEmpty()){
+        while (isEmpty()){
             try{
-                this.coda.wait();
+                wait();
             }
             catch(InterruptedException e){
                 e.printStackTrace();
             }
         }
-        o = this.coda.getFirst();
-        this.coda.removeFirst();
-        return o;
+        notifyAll();
+        return this.coda.removeFirst();
     }
         /**
          * Gestisce l’attuale insieme di ordinazioni su file attraverso il sistema di serializzazione degli oggetti di Java. Dovranno essere implementate opportunamente le interfacce per la gestione del meccanismo di serializzazione.
          * Il salvataggio avviene solo se ci sono ordinazioni in coda altrimenti si deve restare in attesa che venga aggiunta un’ordinazione alla coda.
          */
     public synchronized void salvaOrdinazioni(){
-        while (this.coda.isEmpty()){
+        while (isEmpty()){
             try{
-                this.coda.wait();
+                wait();
             }
             catch(InterruptedException e){
                 e.printStackTrace();
@@ -80,5 +83,6 @@ public class Comande {
         } catch (IOException e){
             e.printStackTrace();
         }
+        notifyAll();
     }
 }
