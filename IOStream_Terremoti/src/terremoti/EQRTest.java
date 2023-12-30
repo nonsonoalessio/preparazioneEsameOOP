@@ -16,17 +16,13 @@ public class EQRTest {
      */
     public static void main(String[] args) {
         
+        EQReport eq = EQReport.readFromTextFile("query");
         
-        System.out.println(EQReport.readFromTextFile("query"));
+        System.out.println(eq);
         
-        //System.out.println(eq);
+        eq.sort(new MagnitudeComparator());
         
-        //eq.sort(new MagnitudeComparator());
-        
-        //EQReport.printToTextFile(eq, "sorted");
-        
-        
-        // TODO code application logic heres
+        EQReport.printToTextFile(eq, "sorted");
     }
     
 }

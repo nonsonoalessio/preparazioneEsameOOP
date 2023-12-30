@@ -12,13 +12,15 @@ public class EQEvent implements Comparable<EQEvent> {
     private String catalog;
     private String contributor;
     private long contributorID;
-    private MagType magType;
+    private String magType;
     private double magnitude;
     private String magAuthor;
     private String eventLocationName;
 
+    public EQEvent(){}
+
     public EQEvent (long eventID, LocalDateTime time, double latitude, double longitude, double depthKm, String author,
-            String catalog, String contributor, long contributorID, MagType magType, double magnitude, String magAuthor,
+            String catalog, String contributor, long contributorID, String magType, double magnitude, String magAuthor,
             String eventLocationName) {
         this.eventID = eventID;
         this.time = time;
@@ -88,10 +90,10 @@ public class EQEvent implements Comparable<EQEvent> {
     public void setContributorID(long contributorID) {
         this.contributorID = contributorID;
     }
-    public MagType getMagType() {
+    public String getMagType() {
         return magType;
     }
-    public void setMagType(MagType magType) {
+    public void setMagType(String magType) {
         this.magType = magType;
     }
     public double getMagnitude() {
