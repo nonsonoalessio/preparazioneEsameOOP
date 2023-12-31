@@ -1,5 +1,7 @@
 package it.unisa.diem.oop23;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -59,5 +61,23 @@ public class PrimaryController implements Initializable {
         lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         t.setItems(getStudents());
+        BooleanBinding deleteButtonControl = Bindings.createBooleanBinding(() -> t.getItems().isEmpty(), t.getItems());
+        deleteButton.disableProperty().bind(deleteButtonControl);
+        BooleanBinding addButtonControl = Bindings.createBooleanBinding(() -> firstNameTf.getText().isEmpty() ||
+                lastNameTf.getText().isEmpty() ||
+                idTf.getText().isEmpty() ||
+                !tfIsInteger(),
+                firstNameTf.textProperty(), lastNameTf.textProperty(), idTf.textProperty()
+        );
+        addButton.disableProperty().bind(addButtonControl); // TODO: Mostrare perché add è disabilitato.
+    }
+
+    private boolean tfIsInteger(){
+        try{
+            Integer.parseInt(idTf.getText());
+            return true;
+        } catch (NumberFormatException e){
+            return false;
+        }
     }
 }
