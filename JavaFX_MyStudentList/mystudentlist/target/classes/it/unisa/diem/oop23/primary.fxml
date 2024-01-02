@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="it.unisa.diem.oop23.PrimaryController">
+<HBox prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unisa.diem.oop23.PrimaryController">
    <children>
       <VBox prefHeight="400.0" prefWidth="172.0" spacing="4.0">
          <children>
@@ -20,9 +20,9 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Open" />
-                    <MenuItem mnemonicParsing="false" text="Save as..." />
-                    <MenuItem mnemonicParsing="false" text="Quit" />
+                    <MenuItem fx:id="open" mnemonicParsing="false" onAction="#openFromFile" text="Open..." />
+                    <MenuItem fx:id="save" mnemonicParsing="false" onAction="#saveToFile" text="Save as..." />
+                    <MenuItem fx:id="quit" mnemonicParsing="false" onAction="#quit" text="Quit" />
                   </items>
                 </Menu>
               </menus>

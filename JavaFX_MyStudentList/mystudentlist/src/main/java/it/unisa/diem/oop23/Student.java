@@ -1,6 +1,8 @@
 package it.unisa.diem.oop23;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
     String firstName;
     String lastName;
     long id;
