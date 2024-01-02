@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="it.unisa.diem.oop23.javafx_terremoti.HelloController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="saveToBin" mnemonicParsing="false" onAction="#saveBinary" text="Salva come..." />
+                  <MenuItem fx:id="operFromBin" mnemonicParsing="false" onAction="#openBinary" text="Apri..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="importFromText" mnemonicParsing="false" onAction="#importText" text="Importa da file di testo..." />
+                  <MenuItem fx:id="exportToText" mnemonicParsing="false" onAction="#exportText" text="Esporta su file di testo..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="quit" mnemonicParsing="false" onAction="#quit" text="Esci" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TableView fx:id="report" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn fx:id="eventIDColumn" prefWidth="75.0" text="EventID" />
+          <TableColumn fx:id="timeColumn" prefWidth="75.0" text="Time" />
+            <TableColumn fx:id="latitudeColumn" prefWidth="75.0" text="Latitude" />
+            <TableColumn fx:id="longitudeColumn" prefWidth="75.0" text="Longitude" />
+            <TableColumn fx:id="depthKmColumn" prefWidth="75.0" text="Depth/KM" />
+            <TableColumn fx:id="authorColumn" prefWidth="75.0" text="Author" />
+            <TableColumn fx:id="catalogColumn" prefWidth="75.0" text="Catalog" />
+            <TableColumn fx:id="contributorColumn" prefWidth="75.0" text="Contributor" />
+            <TableColumn fx:id="contributorIDColumn" prefWidth="75.0" text="ContributorID" />
+            <TableColumn fx:id="magTypeColumn" prefWidth="75.0" text="MagType" />
+            <TableColumn fx:id="magnitudeColumn" prefWidth="75.0" text="Magnitude" />
+            <TableColumn fx:id="magAuthorColumn" prefWidth="75.0" text="MagAuthor" />
+            <TableColumn fx:id="eventLocationNameColumn" prefWidth="75.0" text="EventLocationName" />
+            <TableColumn fx:id="eventTypeColumn" prefWidth="75.0" text="EventType" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>
