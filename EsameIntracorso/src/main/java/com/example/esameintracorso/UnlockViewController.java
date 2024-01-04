@@ -1,8 +1,10 @@
 package com.example.esameintracorso;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,11 +27,13 @@ public class UnlockViewController implements Initializable {
     }
 
     @FXML
-    private void unlockMethod() throws IOException {
+    private void unlockMethod(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("phone-book-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("My Secret Phone Book");
         stage.setScene(scene);
         stage.show();
+        // TODO: Interrompere Thread Generazione Codice OTP
     }
 }

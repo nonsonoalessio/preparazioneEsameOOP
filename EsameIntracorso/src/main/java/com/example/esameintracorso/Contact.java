@@ -35,15 +35,15 @@ public class Contact implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public void writeContacts(ArrayList<Contact> l, File f) throws IOException {
-        ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(f.getAbsolutePath())));
+    public static void writeContacts(ArrayList<Contact> l) throws IOException {
+        ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(new File(System.getProperty("user.home") + "/saved.bin"))));
         oos.writeObject(l);
         oos.close();
     }
 
     @SuppressWarnings("unchecked")
-    public ArrayList<Contact> readContacts(File f) throws IOException, ClassNotFoundException{
-        ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f.getAbsolutePath())));
+    public static ArrayList<Contact> readContacts(File f) throws IOException, ClassNotFoundException{
+        ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(System.getProperty("user.home") + "/saved.bin")));
         ArrayList<Contact> l = (ArrayList<Contact>) ois.readObject();
         ois.close();
         return l;
