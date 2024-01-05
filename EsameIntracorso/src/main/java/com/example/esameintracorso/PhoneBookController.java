@@ -26,39 +26,25 @@ public class PhoneBookController implements Initializable {
     @FXML private TableView<Contact> book;
     @FXML private TableColumn<Contact, String> firstNameColumn;
     @FXML private TableColumn<Contact, String> lastNameColumn;
-    @FXML private TableColumn<Contact, Long> phoneNumberColumn;
+    @FXML private TableColumn<Contact, String> phoneNumberColumn;
     @FXML private ContextMenu contextMenu;
 
     private Stage s;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("firstName"));
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<Contact, String>("lastName"));
-        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<Contact, Long>("phoneNumber"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
 
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        phoneNumberColumn.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<Long>() {
-            @Override
-            public String toString(Long object) {
-                return object.toString();
-            }
-
-            @Override
-            public Long fromString(String string) {
-                try {
-                    return Long.parseLong(string);
-                } catch (NumberFormatException e) {
-                    return null;
-                }
-            }
-        }));
+        phoneNumberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         book.setItems(getContacts());
 
         BooleanBinding addButtonControl = Bindings.createBooleanBinding(() -> firstNameTf.getText().isEmpty() && lastNameTf.getText().isEmpty() && phoneNumberIsValid(), firstNameTf.textProperty(), lastNameTf.textProperty(), phoneNumberTf.textProperty());
-        addButton.disableProperty().bind(addButtonControl);
+        addButton.disableProperty().bind(addButtonControl.not());
     }
 
     private ObservableList<Contact> getContacts(){
