@@ -2,6 +2,7 @@ package it.unisa.diem.oop23.javafx_libri;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ProgressBar;
 
@@ -16,9 +17,9 @@ public class CaricaCatologoService extends Service<ArrayList<Libro>> {
     private int minYear;
     private int maxYear;
     private ProgressBar bar;
-    private ComboBox<String> combo;
+    private final ComboBox<CheckMenuItem> combo;
 
-    public CaricaCatologoService(URL url, int limit, int minYear, int maxYear, ProgressBar bar, ComboBox<String> combo) {
+    public CaricaCatologoService(URL url, int limit, int minYear, int maxYear, ProgressBar bar, ComboBox<CheckMenuItem> combo) {
         this.url = url;
         this.limit = limit;
         this.minYear = minYear;
@@ -37,6 +38,7 @@ public class CaricaCatologoService extends Service<ArrayList<Libro>> {
                 scan.nextLine();
                 scan.useDelimiter("[\n;]");
                 ArrayList<Libro> catalog = new ArrayList<>();
+                ArrayList<String> volumeTypes = new ArrayList<>();
                 while (scan.hasNext()) {
                     Libro l = new Libro();
                     l.setTipoVol(scan.next());
@@ -56,9 +58,18 @@ public class CaricaCatologoService extends Service<ArrayList<Libro>> {
                     l.setPeso(Double.parseDouble(scan.next()));
                     l.setPagine(Integer.parseInt(scan.next()));
                     catalog.add(l);
+                    if(!volumeTypes.contains(l.getTipoVol()))
+                        volumeTypes.add(l.getTipoVol());
                 }
+                updateCombobox(volumeTypes);
                 return catalog;
             }
         };
+    }
+
+    private void updateCombobox(ArrayList<String> types){
+        for(String s : types){
+            combo.getItems().add(new CheckMenuItem(s));
+        }
     }
 }
