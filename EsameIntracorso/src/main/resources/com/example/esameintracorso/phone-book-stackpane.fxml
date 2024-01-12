@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="views" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.esameintracorso.PhoneBookController">
+   <children>
+      <VBox fx:id="unlockScreen" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <Label text="Inserire OTP" />
+            <Label fx:id="generatedOTP" layoutX="10.0" layoutY="10.0" />
+            <PasswordField fx:id="insOTP" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="Codice OTP..." />
+            <Button fx:id="unlockButton" mnemonicParsing="false" onAction="#unlockMethod" text="Sblocca" />
+         </children>
+      </VBox>
+      <HBox fx:id="mainApp" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox spacing="10.0">
+               <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="File">
+                        <items>
+                          <MenuItem mnemonicParsing="false" onAction="#saveMenuItemOnClick" text="Salva" />
+                              <MenuItem mnemonicParsing="false" onAction="#quitMenuItemOnClick" text="Esci" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <Label text="Nome" />
+                  <TextField fx:id="firstNameTf" />
+                  <Label text="Cognome" />
+                  <TextField fx:id="lastNameTf" />
+                  <Label text="Numero telefonico" />
+                  <TextField fx:id="phoneNumberTf" />
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#addButtonOnClick" text="Aggiungi Contatto" />
+               </children>
+               <padding>
+                  <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+               </padding>
+            </VBox>
+            <TableView fx:id="book" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="firstNameColumn" onEditCommit="#editFistNameCell" prefWidth="75.0" text="Nome" />
+                <TableColumn fx:id="lastNameColumn" onEditCommit="#editLastNameCell" prefWidth="75.0" text="Cognome" />
+                  <TableColumn fx:id="phoneNumberColumn" onEditCommit="#editPhoneNumberCell" prefWidth="75.0" text="Numero Telefonico" />
+              </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#copyContactRightClick" text="Copia Contatto" />
+                        <MenuItem mnemonicParsing="false" onAction="#deleteContactRightClick" text="Cancella Contatto" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+            </TableView>
+         </children>
+      </HBox>
+   </children>
+</StackPane>

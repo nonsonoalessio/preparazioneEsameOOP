@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run App" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="it.unisa.diem.oop23.javafx_libri.App" />
+    <module name="JavaFx_Libri" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

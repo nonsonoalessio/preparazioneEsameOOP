@@ -17,26 +17,26 @@
       <VBox alignment="CENTER_LEFT" spacing="10.0">
          <children>
             <Label text="Tipo di Volume" />
-            <ComboBox fx:id="comboBox" prefWidth="150.0" />
+            <ComboBox fx:id="saintVincent" prefWidth="150.0" />
             <Label text="Anno di pubblicazione" />
             <HBox spacing="5.0">
                <children>
                   <Label text="da" />
-                  <TextField prefWidth="75.0" promptText="1965" />
+                  <TextField fx:id="minYearTf" prefWidth="75.0" promptText="1965" />
                   <Label text="a" />
-                  <TextField prefWidth="75.0" promptText="2021" />
+                  <TextField fx:id="maxYearTf" prefWidth="75.0" promptText="2021" />
                </children>
             </HBox>
             <Separator />
             <HBox spacing="4.0">
                <children>
                   <Label text="Limite risultati" />
-                  <TextField prefHeight="25.0" prefWidth="108.0" promptText="100" />
+                  <TextField fx:id="limitTf" prefHeight="25.0" prefWidth="108.0" promptText="100" />
                </children>
             </HBox>
             <VBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#updateButtonOnClick" text="Aggiorna" />
+                  <Button fx:id="updateButton" alignment="CENTER" mnemonicParsing="false" onAction="#updateButtonOnClick" text="Aggiorna" />
                   <ProgressBar fx:id="loadingProgress" prefWidth="200.0" progress="0.0" visible="false" />
                </children>
             </VBox>
